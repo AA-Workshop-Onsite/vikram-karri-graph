@@ -1,18 +1,16 @@
 extend schema
-  @link(url: "https://specs.apollo.dev/federation/v2.8", import:
-    [
-      "@key",
-      "@requires",
-      "@external",
-      "@tag",
-      "@shareable"
-    ]
-  )
+  @link(url: "https://specs.apollo.dev/federation/v2.5", import: ["@key",
+"@authenticated"])
 
 type Query {
   users: [User]
   user(id: ID!): User
 }
+
+type Query { """
+  Get a specific order by id. Meant to be used for a detailed view of an
+order """
+order(id: ID!): Order @authenticated }
 
 """
 An user account in our system
